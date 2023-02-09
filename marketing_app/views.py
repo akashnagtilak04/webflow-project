@@ -46,6 +46,7 @@ class CheckAccessCodeAPI(GenericAPIView):
         if response.status_code == 200:
             data = response.json()
         else:
+            response.headers["content-type"].strip().startswith("application/json")
             data = response.json()
         
         return HttpResponse(json.dumps(data), content_type='application/json')
@@ -77,9 +78,12 @@ class AddMarketingEmailAPI(GenericAPIView):
         endpoint = 'http://ec2-3-22-222-168.us-east-2.compute.amazonaws.com/api/add-marketing-email/'
         payload = {'email': data.get('email')}
         response = requests.post(endpoint, json=payload)
+        print(response)
         if response.status_code == 200:
             data = response.json()
         else:
+            response.headers["content-type"].strip().startswith("application/json")
+
             data = response.json()
         
         return HttpResponse(json.dumps(data), content_type='application/json')
