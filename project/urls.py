@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from marketing_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('check-access-code/', CheckAccessCodeAPI.as_view()),
+    path('add-marketing-email/', AddMarketingEmailAPI.as_view())
 ]
